@@ -78,6 +78,13 @@ Special Environments
 . When deploying to OpenStack release "nova" or newer, you will need to do an initial deploy, then when it has finished run `leap facts update` and then deploy again (see: https://leap.se/code/issues/3020)
 
 
+Contributing
+============
+
+In order to validate the syntax and style guide compliance
+before you commit, see https://github.com/pixelated-project/puppet-git-hooks#installation
+
+
 Changelog
 =========
 
