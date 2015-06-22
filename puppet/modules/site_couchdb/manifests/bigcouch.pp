@@ -1,3 +1,4 @@
+# sets up bigcouch on couchdb node
 class site_couchdb::bigcouch {
 
   $config         = $::site_couchdb::couchdb_config['bigcouch']
@@ -25,6 +26,7 @@ class site_couchdb::bigcouch {
     -> Class['site_couchdb::setup']
     -> Class['site_couchdb::bigcouch::add_nodes']
     -> Class['site_couchdb::bigcouch::settle_cluster']
+    -> Class['site_couchdb::create_dbs']
 
   include site_couchdb::bigcouch::add_nodes
   include site_couchdb::bigcouch::settle_cluster
