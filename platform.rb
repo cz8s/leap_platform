@@ -4,8 +4,8 @@
 #
 
 Leap::Platform.define do
-  self.version = "0.7.1"
-  self.compatible_cli = "1.7.0".."1.7.99"
+  self.version = "0.8"
+  self.compatible_cli = "1.8".."1.99"
 
   #
   # the facter facts that should be gathered
@@ -105,7 +105,7 @@ Leap::Platform.define do
 
   self.monitor_username = 'monitor'
 
-  self.reserved_usernames = ['monitor']
+  self.reserved_usernames = ['monitor', 'root']
 
   self.default_puppet_tags = ['leap_base','leap_service']
 end
