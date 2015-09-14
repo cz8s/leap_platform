@@ -7,8 +7,8 @@ class site_postfix::mx {
   $domain              = $domain_hash['full_suffix']
   $host_domain         = $domain_hash['full']
   $cert_name           = hiera('name')
-  $mynetworks          = join(hiera('mynetworks'), ' ')
-  $rbls                = suffix(prefix(hiera('rbls'), 'reject_rbl_client '), ',')
+  $mynetworks          = join(hiera('mynetworks', ''), ' ')
+  $rbls                = suffix(prefix(hiera('rbls', []), 'reject_rbl_client '), ',')
 
   $root_mail_recipient = hiera('contacts')
   $postfix_smtp_listen = 'all'
@@ -21,16 +21,20 @@ class site_postfix::mx {
   postfix::config {
     'mynetworks':
       value => "127.0.0.0/8 [::1]/128 [fe80::]/64 ${mynetworks}";
+    # Note: mydestination should not include @domain, because this is
+    # used in virtual alias maps.
     'mydestination':
-      value => "\$myorigin, localhost, localhost.\$mydomain, ${domain}";
+      value => "\$myorigin, localhost, localhost.\$mydomain";
     'myhostname':
       value => $host_domain;
     'mailbox_size_limit':
       value => '0';
     'home_mailbox':
       value => 'Maildir/';
+    # Note: virtual-aliases map will take precedence over leap_mx
+    # lookup (tcp:localhost)
     'virtual_alias_maps':
-      value => 'tcp:localhost:4242';
+      value => 'hash:/etc/postfix/virtual-aliases tcp:localhost:4242';
     'luser_relay':
       value => 'vmail';
     'smtpd_tls_received_header':
@@ -51,7 +55,7 @@ class site_postfix::mx {
   include site_postfix::mx::checks
   include site_postfix::mx::smtp_tls
   include site_postfix::mx::smtpd_tls
-  include site_postfix::mx::reserved_aliases
+  include site_postfix::mx::static_aliases
 
   # greater verbosity for debugging, take out for production
   #include site_postfix::debug
@@ -73,7 +77,8 @@ class site_postfix::mx {
   -o smtpd_tls_wrappermode=yes
   -o smtpd_tls_security_level=encrypt
   -o smtpd_recipient_restrictions=\$smtps_recipient_restrictions
-  -o smtpd_helo_restrictions=\$smtps_helo_restrictions",
+  -o smtpd_helo_restrictions=\$smtps_helo_restrictions
+  -o smtpd_client_restrictions=",
     require             => [
       Class['Site_config::X509::Key'],
       Class['Site_config::X509::Cert'],
