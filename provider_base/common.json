@@ -83,7 +83,7 @@
     "webapp": {
       "type": "git",
       "source": "https://leap.se/git/leap_web",
-      "revision": "origin/version/0.7.1"
+      "revision": "origin/develop"
     }
   }
 }
