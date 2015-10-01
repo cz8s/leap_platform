@@ -12,6 +12,16 @@
 class site_config::remove_files {
 
   #
+  # Platform 0.8 removals
+  #
+
+  tidy {
+    '/etc/apache/sites-enabled/leap_webapp.conf':
+      notify => Service['apache'];
+  }
+
+
+  #
   # Platform 0.7 removals
   #
 
@@ -27,14 +37,17 @@ class site_config::remove_files {
       path => '/var/log/',
       recurse => true,
       matches => 'leap_mx*';
-    'leap_mx_rotate':
-      path => '/var/log/leap/',
-      recurse => true,
-      matches => [ 'mx.log.[0-9]', 'mx.log.[0-9]?', 'mx.log.[6-9]?gz'];
     '/srv/leap/webapp/public/provider.json':;
     '/srv/leap/couchdb/designs/tmp_users':
       recurse => true,
       rmdirs => true;
+  }
+
+  if member($::services, 'webapp') {
+    tidy {
+      '/etc/apache/sites-enabled/leap_webapp.conf':
+        notify => Service['apache'];
+    }
   }
 
   # leax-mx logged to /var/log/leap_mx.log in the past
