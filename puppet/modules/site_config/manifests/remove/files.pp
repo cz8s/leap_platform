@@ -12,16 +12,6 @@
 class site_config::remove::files {
 
   #
-  # Platform 0.8 removals
-  #
-
-  tidy {
-    '/etc/apache/sites-enabled/leap_webapp.conf':
-      notify => Service['apache'];
-  }
-
-
-  #
   # Platform 0.7 removals
   #
 
