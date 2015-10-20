@@ -1,0 +1,16 @@
+fixtures:
+  symlinks:
+    pixelated: "#{source_dir}"
+    site_apt: "#{source_dir}/../site_apt"
+    site_sshd: "#{source_dir}/../site_sshd"
+  repositories:
+    stdlib:    " https://leap.se/git/puppet_stdlib"
+    apt:       "https://leap.se/git/puppet_apt"
+    lsb:       "https://leap.se/git/puppet_lsb"
+    git:       "https://leap.se/git/puppet_git"
+    sysctl:    "https://leap.se/git/puppet_sysctl"
+    shorewall: "https://leap.se/git/puppet_shorewall"
+    sshd:      "https://leap.se/git/puppet_sshd"
+    resolvconf: "https://leap.se/git/puppet_resolvconf.git"
+    unbound:   "https://leap.se/git/puppet_unbound"
+    concat:    "https://leap.se/git/puppet_concat"
