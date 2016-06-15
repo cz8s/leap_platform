@@ -1,3 +1,0 @@
-[submodule "puppet/modules/systemd"]
-	path = puppet/modules/systemd
-	url = https://leap.se/git/puppet_systemd
