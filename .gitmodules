@@ -1,6 +1,3 @@
-[submodule "puppet/modules/postfix"]
-	path = puppet/modules/postfix
-	url = https://leap.se/git/puppet_postfix
 [submodule "puppet/modules/vcsrepo"]
 	path = puppet/modules/vcsrepo
 	url = https://leap.se/git/puppet_vcsrepo
