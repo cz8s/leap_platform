@@ -1,6 +1,3 @@
-[submodule "puppet/modules/tor"]
-	path = puppet/modules/tor
-	url = https://leap.se/git/puppet_tor
 [submodule "puppet/modules/stunnel"]
 	path = puppet/modules/stunnel
 	url = https://leap.se/git/puppet_stunnel
