@@ -1,6 +1,3 @@
-[submodule "puppet/modules/passenger"]
-	path = puppet/modules/passenger
-	url = https://leap.se/git/puppet_passenger
 [submodule "puppet/modules/augeas"]
 	path = puppet/modules/augeas
 	url = https://leap.se/git/puppet_augeas
